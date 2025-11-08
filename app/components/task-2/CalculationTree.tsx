@@ -19,7 +19,7 @@ interface CalculationNodeData {
   rightOperand: number | null;
   parentId: string | null;
   children?: CalculationNodeData[];
-  createdAt: string;
+  createdAt: string | Date;
 }
 
 interface CalculationTreeProps {
