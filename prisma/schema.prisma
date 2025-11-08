@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../node_modules/.prisma/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// User model for authentication
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  password  String   // Should be hashed (bcrypt)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  calculationNodes CalculationNode[]
+
+  @@map("users")
+}
+
+enum OperationType {
+  ADD
+  SUBTRACT
+  MULTIPLY
+  DIVIDE
+}
+
+model CalculationNode {
+  id        String   @id @default(cuid())
+  
+
+  // User relations
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  // Calculation relations
+  isRoot    Boolean  @default(false)
+  value     Float    
+  
+  // Operation relations
+  operation OperationType?
+  rightOperand Float?
+  
+  // Tree relations
+  parentId  String?
+  parent    CalculationNode?  @relation("CalculationTree", fields: [parentId], references: [id], onDelete: Cascade)
+  children  CalculationNode[] @relation("CalculationTree")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([parentId])
+  @@index([userId])
+  @@index([isRoot])
+  @@map("calculation_nodes")
+}
