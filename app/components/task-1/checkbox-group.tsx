@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckBoxCheckedIcon } from "../icons";
+import { CheckBoxCheckedIcon } from "../../icons";
 
 interface CheckboxGroupProps {
     pages: { id: string; label: string }[];

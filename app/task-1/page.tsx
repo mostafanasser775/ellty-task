@@ -1,6 +1,6 @@
 import { CheckBoxCheckedIcon } from "../icons";
-import Checkbox from "../checkbox";
-import CheckboxGroup from "../components/checkbox-group";
+import Checkbox from "../components/task-1/checkbox";
+import CheckboxGroup from "../components/task-1/checkbox-group";
 
 export default function Task1Page() {
     const pages = [
