@@ -31,15 +31,7 @@ export default async function Task2Page() {
           </div>
         ) : (
           <div className="space-y-6">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-              <h3 className="font-semibold text-blue-900 mb-2">How it works:</h3>
-              <ul className="text-sm text-blue-800 space-y-1 list-disc list-inside">
-                <li>Start a new calculation by choosing a starting number</li>
-                <li>Add operations (+, -, ×, ÷) to any number in the tree</li>
-                <li>Each operation creates a new branch in the calculation tree</li>
-                <li>Build complex calculation chains with other users!</li>
-              </ul>
-            </div>
+            
             <CalculationTree user={user} initialTrees={calculations} />
           </div>
         )}
